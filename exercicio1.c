@@ -10,7 +10,7 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    // Alocação dinâmica de memória para o vetor
+    //Alocação dinâmica de memória para o vetor
     int* vetor = (int*)malloc(n * sizeof(int));
     if (vetor == NULL) {
         printf("Erro ao alocar memória.\n");
