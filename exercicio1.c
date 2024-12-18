@@ -6,26 +6,50 @@ inteiros fornecidos pelo usuário e compute a média desses números.
 #include <stdio.h>
 #include <stdlib.h>
 
+void le_numeros(int *array, int n);
+void calcularSomaMedia(int *array, int tamanho, int *soma, double *media);
+
 int main() {
-    int n;
+    int n; 
+    int soma; 
+    double media; 
+
+    printf("Digite a quantidade de números: ");
     scanf("%d", &n);
 
-    //Alocação dinâmica de memória para o vetor
-    int* vetor = (int*)malloc(n * sizeof(int));
-    if (vetor == NULL) {
+    //Aloca memória dinamicamente para armazenar os números
+    int *numeros = calloc(n, sizeof(int));
+    if (numeros == NULL) {
         printf("Erro ao alocar memória.\n");
         return 1;
     }
 
-    int soma = 0;
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &vetor[i]);
-        soma += vetor[i];
-    }
+    le_numeros(numeros, n);
 
-    double media = (double)soma / n;
-    printf("A média é: %.2f\n", media);
+    calcularSomaMedia(numeros, n, &soma, &media);
 
-    free(vetor);
+    printf("A soma é %d e a média é %.2lf\n", soma, media);
+
+    // Libera a memória alocada
+    free(numeros);
+
     return 0;
+}
+
+//Função que calcula a soma e a média de um array
+void calcularSomaMedia(int *array, int tamanho, int *soma, double *media) {
+    *soma = 0; // Inicializa a soma
+    for (int i = 0; i < tamanho; i++) {
+        *soma += array[i]; //Soma os elementos do array
+    }
+    *media = (double)*soma / tamanho; //Calcula a média
+}
+
+//Função que lê os números fornecidos pelo usuário
+void le_numeros(int *array, int n){
+	
+    for (int i = 0; i < n; i++) {
+        printf("Digite o número %d: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
 }
