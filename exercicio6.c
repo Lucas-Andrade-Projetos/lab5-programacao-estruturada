@@ -9,13 +9,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define max 250
+
 char* strcat_custom(const char* a, const char* b);
+void ler_palavra(char *palavra, int tamanho_maximo);
+
 
 int main() {
-    char a[] = "Olá, ";
-    char b[] = "mundo!";
-    
-    char* result = strcat_custom(a, b);
+
+ 	char p1[max]; 
+    ler_palavra(p1, sizeof(p1)); 
+	char p2[max]; 
+    ler_palavra(p2, sizeof(p2)); 
+
+    char* result = strcat_custom(p1, p2);
     
     if (result != NULL) {
         printf("Resultado da concatenação: %s\n", result);
@@ -24,6 +31,18 @@ int main() {
     
     return 0;
 }
+
+// Função para ler uma palavra
+void ler_palavra(char *palavra, int tamanho_maximo) {
+
+    if (fgets(palavra, tamanho_maximo, stdin) != NULL) {
+        size_t tamanho = strlen(palavra);
+        if (palavra[tamanho - 1] == '\n') {
+            palavra[tamanho - 1] = '\0'; 
+        }
+    }
+}
+
 
 char* strcat_custom(const char* a, const char* b) {
     //Calculando o tamanho das duas strings + 1 para o '\0' final

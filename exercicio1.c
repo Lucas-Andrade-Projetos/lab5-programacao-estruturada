@@ -18,20 +18,20 @@ int main() {
     scanf("%d", &n);
 
     //Aloca memória dinamicamente para armazenar os números
-    int *numeros = calloc(n, sizeof(int));
-    if (numeros == NULL) {
+    int *numero = calloc(n, sizeof(int));
+    if (numero == NULL) {
         printf("Erro ao alocar memória.\n");
         return 1;
     }
 
-    le_numeros(numeros, n);
+    le_numeros(numero, n);
 
-    calcularSomaMedia(numeros, n, &soma, &media);
+    calcularSomaMedia(numero, n, &soma, &media);
 
     printf("A soma é %d e a média é %.2lf\n", soma, media);
 
     // Libera a memória alocada
-    free(numeros);
+    free(numero);
 
     return 0;
 }
@@ -50,6 +50,6 @@ void le_numeros(int *array, int n){
 	
     for (int i = 0; i < n; i++) {
         printf("Digite o número %d: ", i + 1);
-        scanf("%d", &numeros[i]);
+        scanf("%d", &array[i]);
     }
 }

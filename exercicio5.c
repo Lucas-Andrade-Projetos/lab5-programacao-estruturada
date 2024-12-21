@@ -9,40 +9,72 @@ vetor no outro!
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(int *a, int *b);
+void le_numeros(int *array, int n);
+void display(int *array, int n);
+void swap(int **a, int **b);
 
 int main() {
-    int a[] = {5, 6, 7};
-    int b[] = {1, 2, 0, 8};
+	
+	//pedindo a variavel para o user
+	int n=0, m=0; 
+    scanf("%d", &n);
+	scanf("%d", &m);
+	int *a;
+	int *b;
+	a = calloc(n, sizeof(int));
+	b = calloc(m, sizeof(int));
 
-    //Calculando o tamanho de cada array
-    int size_a = sizeof(a) / sizeof(a[0]);
-    int size_b = sizeof(b) / sizeof(b[0]);
-
-    swap(a, b);
-
-    printf("Conteúdo de a após a troca: ");
-    for (int i = 0; i < size_b; i++) {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
-
-    printf("Conteúdo de b após a troca: ");
-    for (int i = 0; i < size_a; i++) {
-        printf("%d ", b[i]);
+	if(a == NULL || b == NULL) {
+        printf("Erro ao alocar memória.\n");
+        return 1;
     }
 
+	//adicionando os valores
+	le_numeros(a, n);
+	le_numeros(b, m);
+
+	printf("Conteúdo de a antes da troca: ");
+    display(a, n);
     printf("\n");
 
+    printf("Conteúdo de b antes a troca: ");
+	display(b, m);
+    printf("\n");
+    
+	swap(&a, &b);
+
+    printf("Conteúdo de a depois da troca: ");
+    display(a, n);
+    printf("\n");
+
+    printf("Conteúdo de b depois da troca: ");
+	display(b, m);
+    printf("\n");
+
+	//Libera a memória alocada
+	free(a);
+	free(b);
     return 0;
 }
 
-void swap(int *a, int *b) {
-    int temp;
-    
-    for (int i = 0; a[i] != '\0' && b[i] != '\0'; i++) {
-        temp = *(a + i);
-        *(a + i) = *(b + i);
-        *(b + i) = temp;
+void le_numeros(int *array, int n){
+	
+	for (int i = 0; i < n; i++) {
+        printf("Digite o número %d: ", i + 1);
+        scanf("%d", &array[i]);
     }
+}
+
+void display(int *array, int n){
+	
+	for (int i = 0; i < n; i++) {
+        printf("%d ", array[i]);
+    }
+}
+
+void swap(int **a, int **b){
+    
+	int *temp = *a;
+	*a = *b;
+	*b = temp;
 }

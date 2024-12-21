@@ -10,10 +10,13 @@ mesma, os valores de a e b devem estar trocados, como ilustra o exemplo a seguir
 void swap(int* a, int* b);
 
 int main() {
-    int a = 5;
-    int b = 7;
+    int a;
+    int b;
 
-    printf("a = %d, b = %d\n", a, b);
+	scanf("%d", &a);
+	scanf("%d", &b);
+    
+	printf("a = %d, b = %d\n", a, b);
     
 	swap(&a, &b);
 

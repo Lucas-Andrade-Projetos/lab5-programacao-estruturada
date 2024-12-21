@@ -10,6 +10,7 @@ Implemente as funções:
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //Protótipos das funções
 int** matriz_le(int n, int m);

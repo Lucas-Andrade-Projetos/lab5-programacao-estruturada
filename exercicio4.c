@@ -10,7 +10,8 @@ incrementado em uma unidade, como ilustra o exemplo a seguir.
 void inc(int* x); 
 
 int main() {
-    int a = 5;
+	int a;
+    scanf("%d", &a);
     inc(&a);  
     printf("%d\n", a);  
     return 0;
